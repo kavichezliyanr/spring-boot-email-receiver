@@ -31,7 +31,7 @@ public class EmailReceiverService {
     @ServiceActivator(inputChannel="mailChannel")
     public void handleMessage(Message<?> message) throws Exception {
     	MimeMessage mimeMessage = (MimeMessage) message.getPayload();
-        System.out.println("message received : "+mimeMessage.getDescription());
+        log.info("message received : "+mimeMessage.getSubject());
         List<Attachment> attachments = getAttachments(mimeMessage);
 
         attachments.forEach(action->{
